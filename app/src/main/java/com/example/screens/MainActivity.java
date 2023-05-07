@@ -7,22 +7,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    EditText myNewEdt;
+    Button firstBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button b = findViewById(R.id.firstBtn);
+        firstBtn = findViewById(R.id.firstBtn);
 
-        b.setOnClickListener(new View.OnClickListener() {
+        firstBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(intent);
+                myNewEdt = (EditText) findViewById(R.id.myNewEdt);
+                String N = myNewEdt.getText().toString();
+                Intent i = new Intent(MainActivity.this, SecondActivity.class);
+                i.putExtra("name" , N);
+                startActivity(i);
             }
         });
     }
