@@ -1,6 +1,7 @@
 
 # Rapport
 
+Jag började med att gafflade och clonade Github filen. Sedan skapades en andra aktivitet som fick namnaen SecondActivity. Tanken med appen är att man på startsidan ska skriva in sitt namn, klicka på knappen som då tar en till den andra sidan. Då skickas namnet med till den sidan och skrivs ut där(se figur 1 & 2).
 **Skriv din rapport här!**
 
 _Du kan ta bort all text som finns sedan tidigare_.
