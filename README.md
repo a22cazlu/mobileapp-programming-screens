@@ -1,42 +1,36 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+Jag började med att gafflade och clonade Github filen. Sedan skapades en andra aktivitet som fick namnaen SecondActivity. Tanken med appen är att man på startsidan ska skriva in sitt namn, klicka på knappen som då tar en till den andra sidan. Då skickas namnet med till den sidan och skrivs ut där(se figur 1 & 2). Det går sedan att gå tillbaka till den första sidan genom att klicka på knappen på den andra sidan.
 
-_Du kan ta bort all text som finns sedan tidigare_.
+![](page1.png)
 
-## Följande grundsyn gäller dugga-svar:
+**Figur 1:** Första sidan
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+![](page2.png)
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+**Figur 2:** Andra sidan
+
+För att användaren ska skickas med till den andra sidan tillsammans med sitt namn används:
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+firstBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myNewEdt = (EditText) findViewById(R.id.myNewEdt);
+                String N = myNewEdt.getText().toString();
+                Intent i = new Intent(MainActivity.this, SecondActivity.class);
+                i.putExtra("name" , N);
+                startActivity(i);
+            }
+        });
+```
+Detta är vad som sker då man klickar på knappen. Först hämtar den värdet (namnet) i en EditText widget som har namnet myNewEdt och efter det omvandlas den till en string. Sedans skapas en Intent som får namnet i som kommer att skicka användaren från sida ett till sida två då man startar den. För att skicka med namnet skickar man med värdet string N i en putExtra. Sist skrivs startActivity(i) in för att starta Intenten och ta användaren till nästa sida.
+
+För att få fram värdet (namnet) på den andra sidan används getIntent().getStringExtra() sedan skrivs det ut i en TextView som här fått namnet msg.
+
+```
+msg = findViewById(R.id.textName);
+msg.setText("Hi " + getIntent().getStringExtra("name"));
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
-
-![](android.png)
-
-Läs gärna:
-
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
